@@ -54,11 +54,11 @@ function Navbar() {
   }, []);
 
   const handleLoginClick = () => {
-    
+    history.push(`/login`);
   };
 
   const handleRegisterClick = () => {
-    
+    history.push(`/register`);
   };
 
   return (
