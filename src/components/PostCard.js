@@ -17,7 +17,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 // import { fetchData } from "../helper/FetchData";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,14 +91,14 @@ export default function PostCard({
   );
 }
 
-PostCard.propTypes = {
-//   id: PropTypes.string.isRequired,
-  author: PropTypes.string,
-  title: PropTypes.string,
-  publishedDate: PropTypes.string,
-  imgSrc: PropTypes.string,
-  content: PropTypes.string,
-  likeCount: PropTypes.number,
-  viewCount: PropTypes.number,
-  commentCount: PropTypes.number,
-};
+// PostCard.propTypes = {
+// //   id: PropTypes.string.isRequired,
+//   author: PropTypes.string,
+//   title: PropTypes.string,
+//   publishedDate: PropTypes.string,
+//   imgSrc: PropTypes.string,
+//   content: PropTypes.string,
+//   likeCount: PropTypes.number,
+//   viewCount: PropTypes.number,
+//   commentCount: PropTypes.number,
+// };

@@ -29,7 +29,6 @@ function Main() {
     const data = await axios.get("https://django-react-blog-prj.herokuapp.com/api/list")
       .then((res) => setPostData(res?.data.results))
     };
-    console.log(postData)
 
     useEffect(() => {
         fetchData();

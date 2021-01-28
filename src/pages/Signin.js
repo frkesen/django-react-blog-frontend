@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { postData } from "../helper/PostData";
+import { AuthContext } from "../context/AuthContext";
 import {
   Button,
   TextField,
@@ -66,6 +67,7 @@ function Signin() {
   const [loginError, setLoginError] = useState(null);
   const history = useHistory();
   const signinStyles = stylesFunc();
+  const { setLoggedIn } = useContext(AuthContext);
 
 //   const handleGoogleButtonClick = () => {
 //     firebase.useGoogleProvider();
@@ -78,7 +80,7 @@ function Signin() {
     postData("https://django-react-blog-prj.herokuapp.com/dj-rest-auth/login/", values).then((data) => {
         localStorage.setItem("token", data.key);
         console.log(data.key)
-        // setLoggedIn(true);
+        setLoggedIn(true);
         history.push("/");
       })
     //   .catch((err) => {

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { AuthContext } from "../context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,14 +32,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Navbar() {
+  const { isLoggedIn, setLoggedIn } = useContext(AuthContext);
   const classes = useStyles();
   const history = useHistory();
 
-  const anchorEl = true;
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const currentUser = false;
   const open = Boolean(anchorEl);
-  const handleMenu = () => {
-    
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleHomeClick = useCallback(() => {
@@ -50,7 +52,8 @@ function Navbar() {
   }, []);
 
   const handleSignOut = useCallback(() => {
-    
+    localStorage.removeItem("token");
+    setLoggedIn(false);
   }, []);
 
   const handleLoginClick = () => {
@@ -77,7 +80,7 @@ function Navbar() {
           <Typography variant="h5" className={classes.title}>
             Awesome Blog
           </Typography>
-          {currentUser ? (
+          {isLoggedIn ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -105,7 +108,6 @@ function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
               </Menu>
             </div>

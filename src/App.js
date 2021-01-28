@@ -9,12 +9,13 @@ import ForgotPassword from "./pages/ForgotPassword";
 import UserPost from "./pages/PostDetail";
 import Navbar from "./components/Navbar";
 import PostDetail from "./pages/PostDetail";
-// import { FirebaseAuthContext } from "../context/AuthContext";
+import AuthContextProvider from "./context/AuthContext";
 
 function App() {
   // const { currentUser } = useContext(FirebaseAuthContext);
 
   return (
+    <AuthContextProvider>
     <Router>
       <Navbar />
       <Switch>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" component={Main} />
       </Switch>
     </Router>
+    </AuthContextProvider>
   );
 }
 
