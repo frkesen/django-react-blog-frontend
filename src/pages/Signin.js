@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { postData } from "../helper/PostData";
 import {
   Button,
   TextField,
@@ -73,13 +74,16 @@ function Signin() {
 //   };
 
   const handleFormSubmit = (values) => {
-    // firebase.signIn(values.email, values.password).then((res) => {
-    //   if (res) {
-    //     setLoginError(res);
-    //     return;
-    //   }
-    //   history.push("/");
-    // });
+    console.log({values});
+    postData("https://django-react-blog-prj.herokuapp.com/dj-rest-auth/login/", values).then((data) => {
+        localStorage.setItem("token", data.key);
+        console.log(data.key)
+        // setLoggedIn(true);
+        history.push("/");
+      })
+    //   .catch((err) => {
+    //     toast(err?.message || "An error occured");
+    //   });
   };
 
   return (
