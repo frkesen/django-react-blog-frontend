@@ -48,7 +48,7 @@ function Navbar() {
   }, []);
 
   const handleClose = useCallback(() => {
-    
+    setAnchorEl(null);
   }, []);
 
   const handleSignOut = useCallback(() => {

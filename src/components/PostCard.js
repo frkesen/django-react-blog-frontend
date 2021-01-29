@@ -51,7 +51,7 @@ export default function PostCard({
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            F
+            {author[0].toUpperCase()}
           </Avatar>
         }
         action={
