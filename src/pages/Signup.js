@@ -6,6 +6,8 @@ import {
   Container,
   Avatar,
   Typography,
+  Link,
+  Box
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
@@ -18,6 +20,10 @@ const signUpValidationSchema = Yup.object().shape({
   password: Yup.string()
     .required("No password provided.")
     .min(8, "Password is too short - should be 8 chars minimum."),
+  passwordConfirmation: Yup.string()
+    .required("No password provided.")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
 const stylesFunc = makeStyles((theme) => ({
@@ -41,12 +47,26 @@ const stylesFunc = makeStyles((theme) => ({
   }  
 }));
 
+function Copyright() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Your Website
+        </Link>{' '}
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    );
+  }
+
 function Signup() {
   const formik = useFormik({
     initialValues: {
       displayName: "",
       email: "",
       password: "",
+      passwordConfirmation: "",
     },
     validationSchema: signUpValidationSchema,
     onSubmit: (values) => {
@@ -105,27 +125,31 @@ function Signup() {
               helperText={formik.touched.password && formik.errors.password}
             />
           </Grid>
-          {/* TODO: add password again field */}
+          <Grid item xs={12}>
+            <TextField
+              name="passwordConfirmation"
+              label="Password Again"
+              variant="outlined"
+              type="password"
+              fullWidth
+              {...formik.getFieldProps("passwordConfirmation")}
+              error={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
+              helperText={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
+            />
+          </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>
               Register
             </Button>
           </Grid>
-          {/* <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleGoogleButtonClick}
-            >
-              SignUp with Google
-            </Button>
-          </Grid> */}
         </Grid>
       </form>
       <p>
-        Already have an account? <a className={signupStyles.login}  href="/login"> Login.</a>
+        Already have an account? <Link className={signupStyles.login}  href="/login"> Login.</Link>
       </p>
+      <Box mt={5}>
+              <Copyright />
+        </Box>
     </Container>
   );
 }
