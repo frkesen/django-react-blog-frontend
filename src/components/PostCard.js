@@ -14,7 +14,8 @@ import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 // import { fetchData } from "../helper/FetchData";
 // import PropTypes from "prop-types";
@@ -48,6 +49,11 @@ export default function PostCard({
   return (
     <Card className={classes.root}>
       <CardMedia className={classes.media} image={imgSrc} title={title} />
+      <CardContent>
+        <Typography variant="h4" color="textPrimary" component="p">
+          {title}
+        </Typography>
+      </CardContent>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -75,13 +81,13 @@ export default function PostCard({
           {`${likeCount} Likes`}
         </Typography>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <VisibilityIcon />
         </IconButton>
         <Typography variant="body2" color="textSecondary" component="p">
           {`${viewCount} Views`}
         </Typography>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <ChatBubbleOutlineIcon />
         </IconButton>
         <Typography variant="body2" color="textSecondary" component="p">
           {`${commentCount} Comments`}

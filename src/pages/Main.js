@@ -47,15 +47,14 @@ function Main() {
         <CircularProgress />
       ) : (
         <Grid container spacing={1}>
-          {postData?.map((post, key) => {
-            
+          {postData?.map((post) => {
             return (
-              <Grid item sm={4} xs={6} key={key}>
+              <Grid item lg={3} md={4} sm={6} xs={12} key={post.id}>
                 {/* {post.title} */}
                 <PostCard
                   id={post.id}
                   title={post.title}
-                  content={post.text}
+                  content={post.content}
                   imgSrc={post.image}
                   publishedDate={formatDateFunc(post.published_date)}
                   author={post.author}
