@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { postData } from "../helper/PostData";
 import {
   Button,
   TextField,
@@ -12,15 +14,16 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const signUpValidationSchema = Yup.object().shape({
-  displayName: Yup.string().required("Display Name is required!!"),
+  userName: Yup.string().required("Display Name is required!!"),
   email: Yup.string().email("Invalid Email").required("Email is required!!"),
   password: Yup.string()
     .required("No password provided.")
     .min(8, "Password is too short - should be 8 chars minimum."),
-  passwordConfirmation: Yup.string()
+  password2: Yup.string()
     .required("No password provided.")
     .min(8, "Password is too short - should be 8 chars minimum.")
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -61,19 +64,29 @@ function Copyright() {
   }
 
 function Signup() {
+  const history = useHistory();
+  const signupStyles = stylesFunc();
   const formik = useFormik({
     initialValues: {
-      displayName: "",
+      userName: "",
       email: "",
       password: "",
-      passwordConfirmation: "",
+      password2: "",
     },
     validationSchema: signUpValidationSchema,
     onSubmit: (values) => {
-    //   firebase.register(values.displayName, values.email, values.password);
+    
+      postData("https://django-react-blog-prj.herokuapp.com/api/user/register/", values)
+        .then((data, err) => {
+            toast("Successfully registered");
+            history.push("/");
+        })
+        .catch((err) => {
+            toast(err?.message || "An error occured");
+        });
     },
+    
   });
-  const signupStyles = stylesFunc();
 
 //   const handleGoogleButtonClick = () => {
 //     firebase.useGoogleProvider();
@@ -127,14 +140,14 @@ function Signup() {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              name="passwordConfirmation"
+              name="password2"
               label="Password Again"
               variant="outlined"
               type="password"
               fullWidth
-              {...formik.getFieldProps("passwordConfirmation")}
-              error={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
-              helperText={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
+              {...formik.getFieldProps("password2")}
+              error={formik.touched.password2 && formik.errors.password2}
+              helperText={formik.touched.password2 && formik.errors.password2}
             />
           </Grid>
           <Grid item xs={12}>
