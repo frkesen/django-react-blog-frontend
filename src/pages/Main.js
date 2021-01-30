@@ -29,7 +29,7 @@ function Main() {
     const data = await axios.get("https://django-react-blog-prj.herokuapp.com/api/list")
       .then((res) => setPostData(res?.data.results))
     };
-
+console.log(postData)
     useEffect(() => {
         fetchData();
         }, []);
@@ -46,10 +46,10 @@ function Main() {
       {!postData ? (
         <CircularProgress />
       ) : (
-        <Grid container spacing={1}>
+        <Grid container spacing={4}>
           {postData?.map((post) => {
             return (
-              <Grid item lg={3} md={4} sm={6} xs={12} key={post.id}>
+              <Grid item lg={4} md={4} sm={6} xs={12} key={post.id}>
                 {/* {post.title} */}
                 <PostCard
                   id={post.id}

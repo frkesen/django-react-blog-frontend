@@ -69,11 +69,6 @@ function Signin() {
   const signinStyles = stylesFunc();
   const { setLoggedIn } = useContext(AuthContext);
 
-//   const handleGoogleButtonClick = () => {
-//     firebase.useGoogleProvider();
-//     alert('You are succesfully logged in!');
-//     history.push('/');
-//   };
 
   const handleFormSubmit = (values) => {
     console.log({values});
@@ -139,16 +134,6 @@ function Signin() {
                   Login
                 </Button>
               </Grid>
-              {/* <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  onClick={handleGoogleButtonClick}
-                >
-                  Sign In with Google
-                </Button>
-              </Grid> */}
             </Grid>
             <p style={{ textAlign: "center", color: "red" }}>
               <small>{loginError}</small>

@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const signUpValidationSchema = Yup.object().shape({
-  userName: Yup.string().required("Display Name is required!!"),
+  username: Yup.string().required("Display Name is required!!"),
   email: Yup.string().email("Invalid Email").required("Email is required!!"),
   password: Yup.string()
     .required("No password provided.")
@@ -68,7 +68,7 @@ function Signup() {
   const signupStyles = stylesFunc();
   const formik = useFormik({
     initialValues: {
-      userName: "",
+      username: "",
       email: "",
       password: "",
       password2: "",
@@ -104,14 +104,14 @@ function Signup() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField
-              name="userName"
+              name="username"
               label="User Name"
               variant="outlined"
               fullWidth
-              {...formik.getFieldProps("userName")}
-              error={formik.touched.userName && formik.errors.userName}
+              {...formik.getFieldProps("username")}
+              error={formik.touched.username && formik.errors.username}
               helperText={
-                formik.touched.userName && formik.errors.userName
+                formik.touched.username && formik.errors.username
               }
             />
           </Grid>

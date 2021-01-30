@@ -6,7 +6,7 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import ForgotPassword from "./pages/ForgotPassword";
 // import UserDetail from "../pages/UserDetail";
-import UserPost from "./pages/PostDetail";
+import PostCreate from "./pages/PostCreate";
 import Navbar from "./components/Navbar";
 import PostDetail from "./pages/PostDetail";
 import AuthContextProvider from "./context/AuthContext";
@@ -21,6 +21,7 @@ function App() {
       <Switch>
         <Route exact path="/register" component={Signup} />
         <Route exact path="/login" component={Signin} />
+        <Route exact path="/create" component={PostCreate} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route
           exact
