@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 // import { fetchData } from "../helper/FetchData";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Container, CircularProgress, Link } from "@material-ui/core";
+import { Grid, Container, CircularProgress } from "@material-ui/core";
 import { formatDateFunc } from "../helper/FormatDate";
 import PostCard from "../components/PostCard";
 
@@ -18,7 +18,7 @@ const stylesFunc = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
 }));
-function Main() {
+function UserPost() {
 //   const { id } = useParams();
   const mainStyles = stylesFunc();
 
@@ -64,4 +64,4 @@ console.log(postData)
   );
 }
 
-export default Main;
+export default UserPost;

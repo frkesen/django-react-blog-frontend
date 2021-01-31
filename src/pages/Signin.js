@@ -71,10 +71,10 @@ function Signin() {
 
 
   const handleFormSubmit = (values) => {
-    console.log({values});
+
     postData("https://django-react-blog-prj.herokuapp.com/dj-rest-auth/login/", values).then((data) => {
         localStorage.setItem("token", data.key);
-        console.log(data.key)
+        console.log({data})
         setLoggedIn(true);
         history.push("/");
       })

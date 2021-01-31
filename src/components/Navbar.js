@@ -46,6 +46,16 @@ function Navbar() {
   const handleHomeClick = useCallback(() => {
     history.push(`/`);
   }, []);
+  
+  const handleProfileClick = useCallback(() => {
+    history.push(`/profile`);
+    handleClose();
+  }, []);
+  
+  const handleMyBlogClick = useCallback(() => {
+    history.push(`/user-post`);
+    handleClose();
+  }, []);
 
   const handleClose = useCallback(() => {
     setAnchorEl(null);
@@ -107,7 +117,8 @@ function Navbar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
+                <MenuItem onClick={handleMyBlogClick}>My Blog</MenuItem>
                 <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
               </Menu>
             </div>

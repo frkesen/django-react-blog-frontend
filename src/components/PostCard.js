@@ -11,6 +11,7 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -48,12 +49,14 @@ export default function PostCard({
 
   return (
     <Card className={classes.root}>
+      <Link href="/post-detail">
       <CardMedia className={classes.media} image={imgSrc} title={title} />
       <CardContent>
         <Typography variant="h4" color="textPrimary" component="p">
           {title}
         </Typography>
       </CardContent>
+      </Link>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
